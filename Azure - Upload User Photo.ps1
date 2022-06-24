@@ -5,9 +5,11 @@
 # Title: Azure - Upload User Photo
 #
 # v 1.0 Initial Release
+# v 1.1 Works with new Filepicker Question Type: https://au2mator.com/documentation/configure-filepicker-question-type/
 # 
 #
 # Init Release: 21.04.2021
+# Update: 24.06.2022
 # Code Template V 1.3
 #
 # URL: https://au2mator.com/upload-user-profile-photo-to-azure-ad-azure-ad-self-service-with-au2mator/?utm_source=github&utm_medium=social&utm_campaign=AZURE_UploadProfilePhoto&utm_content=PS1
@@ -44,7 +46,7 @@ $DoImportPSSession = $false
 
 
 ## Environment
-[string]$PSRemotingServer = "demo01"
+[string]$PSRemotingServer = "demo22"
 [string]$LogPath = "C:\_SCOworkingDir\TFS\PS-Services\Azure - Upload User Photo"
 [string]$LogfileName = "Upload User Photo"
 
@@ -53,8 +55,8 @@ $DoImportPSSession = $false
 $Modules = @("ActiveDirectory") #$Modules = @("ActiveDirectory", "SharePointPnPPowerShellOnline")
 
 ## au2mator Settings
-[string]$PortalURL = "http://demo01.au2mator.local"
-[string]$au2matorDBServer = "demo01"
+[string]$PortalURL = "http://demo22.au2mator.local"
+[string]$au2matorDBServer = "demo22"
 [string]$au2matorDBName = "au2mator40Demo2"
 
 ## Control Mail
@@ -508,8 +510,11 @@ try {
         try {
             Write-au2matorLog -Type INFO -Text "Try to Upload Photo"
 
-            $URLPhoto = "https://graph.microsoft.com/v1.0/users/$UPN/photo/$value" 
-            Invoke-WebRequest -uri $URLPhoto -Headers $headers -Method PUT -Infile $c_Photo -ContentType 'image/jpg'
+            $File=Get-ChildItem -Path "C:\inetpub\au2mator\wwwroot\CustomStore\$RequestID"
+            Write-au2matorLog -Type INFO -Text "file Path: $($File.FullName)"
+
+            $URLPhoto = "https://graph.microsoft.com/v1.0/users/$UPN/photo/`$value" 
+            Invoke-WebRequest -uri $URLPhoto -Headers $headers -Method PUT -Infile $($File.FullName) -ContentType 'image/jpg'
 
             Write-au2matorLog -Type INFO -Text "Photo was uploaded"
 
