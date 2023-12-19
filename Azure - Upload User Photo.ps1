@@ -5,7 +5,7 @@
 # Title: Azure - Upload User Photo
 #
 # v 1.0 Initial Release
-# v 1.1 Works with new Filepicker Question Type: https://au2mator.com/documentation/configure-filepicker-question-type/
+# v 1.1 Works with new Filepicker Question Type: https://click.au2mator.com/QuestionFile/
 # 
 #
 # Init Release: 21.04.2021
@@ -50,7 +50,7 @@ $DoImportPSSession = $false
 [string]$LogPath = "C:\_SCOworkingDir\TFS\PS-Services\Azure - Upload User Photo"
 [string]$LogfileName = "Upload User Photo"
 
-[string]$CredentialStorePath = "C:\_SCOworkingDir\TFS\PS-Services\CredentialStore" #see for details: https://au2mator.com/documentation/powershell-credentials/?utm_source=github&utm_medium=social&utm_campaign=M365_RemoveTeamsTeam&utm_content=PS1
+[string]$CredentialStorePath = "C:\_SCOworkingDir\TFS\PS-Services\CredentialStore" #see for details: https://click.au2mator.com/PSCreds/?utm_source=github&utm_medium=social&utm_campaign=M365_RemoveTeamsTeam&utm_content=PS1
 
 $Modules = @("ActiveDirectory") #$Modules = @("ActiveDirectory", "SharePointPnPPowerShellOnline")
 
@@ -71,7 +71,7 @@ $SMTPSender = "SelfService@au2mator.com"
 $SMTPPort = "587"
 
 # Stored Credentials
-# See: https://au2mator.com/documentation/powershell-credentials/?utm_source=github&utm_medium=social&utm_campaign=M365_RemoveTeamsTeam&utm_content=PS1
+# See: https://click.au2mator.com/PSCreds/?utm_source=github&utm_medium=social&utm_campaign=M365_RemoveTeamsTeam&utm_content=PS1
 $SMTPCredential_method = "Stored" #Stored, Manual
 $SMTPcredential_File = "SMTPCreds.xml"
 $SMTPUser = ""
